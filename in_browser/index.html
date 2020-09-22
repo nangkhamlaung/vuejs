@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue in-browser</title>
+	<script type="text/javascript" src="vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<h1>{{message}}</h1>
+	<!-- data bind (or)v-bind :src=""-->
+	<img :src="img" alt="">
+	<!-- condition -->
+	<p v-if="error">Error!</p>
+	<p v-elseif>No Error!</p>
+
+	<ul>
+		<li v-for="todo in todos">
+			{{todo.text}}
+		</li>
+	</ul>
+	<!-- method Or use ->@click -->
+	<button v-on:click="reverseMessage">Reverse Message</button>
+	<!-- model -->
+	<form>
+		<label>Name</label>
+		<input type="text" name="name" v-model="username">
+		{{username}}
+	</form>
+
+</div>
+<script type="text/javascript">
+	var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!',
+    img:'../photo/css.png',
+    error:false,
+    todos: [
+      { text: 'Learn JavaScript' },
+      { text: 'Learn Vue' },
+      { text: 'Build something awesome' }
+    ],
+    username:''
+    
+
+  },
+  methods:{
+  	reverseMessage(){
+  		this.message=this.message.split('').reverse().join('');
+  		
+  		// this.message='Nang Kham Laung'.split('').reverse().join('');
+
+  	}
+
+  }
+})
+</script>
+
+</body>
+</html>

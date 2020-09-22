@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript" src="vue.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+  
+
+
+</head>
+<body>
+   <div class="container col-12 mt-3  offset-5">
+    <div class="row col-12 ">
+    <div id="bmi" >
+   <h1>{{message}}</h1>
+  <div class="form-group">
+    <label for="height">Height</label>
+    <input type="text" class="form-control" id="height" v-model.number="height">:ft
+
+    <input type="text" class="form-control" id="height" v-model.number="inches">:inches
+  </div>
+  <div class="form-group">
+    <label for="weight">Weight</label>
+    <input type="text" class="form-control" id="weight" v-model.number="weight">
+  </div>
+  <button class="btn btn-primary" v-on:click="cal">Calculate</button>
+  <div class="outcome mt-3">
+    <p class="bmi" id="hide">Your BMI <span>{{outcome}}</span></p>
+
+    
+    <p v-if="outcome<=18.5" style="color: blue">Under Weight</p>
+    <p v-else-if="outcome>=18.5 && outcome<=24.9" style="color: green">Normal Weight</p>
+    <p v-else-if="outcome>=25.0 && outcome<=29.9" style="color: yellow">Over Weight</p>
+    <p v-else style="color: red">Obsver Weight</p>
+</div>
+</div>
+ </div>
+
+  
+</div>
+<script type="text/javascript">
+  
+  let bmi = new Vue({
+  el: "#bmi",
+  data: {
+    message:"BMI",
+    height: "",
+    inches: "",
+    weight: "",
+    outcome: ""
+
+  },
+  methods: {
+
+
+    cal: function() {
+      var result=(this.height*12)+(this.inches);
+      var output=result*result;
+      this.outcome=(((this.weight)/output)*703).toFixed(2);
+       }
+    }
+});
+</script>
+</body>
+</html>
